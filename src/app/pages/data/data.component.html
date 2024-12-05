@@ -1,0 +1,83 @@
+<div class="container mt-5">
+    <h3>Data Management</h3>
+  
+    <!-- Tombol Ekspor -->
+    <div class="mb-3">
+      <button (click)="exportToPDF()" class="btn btn-primary me-2">Export to PDF</button>
+      <button (click)="exportToExcel()" class="btn btn-success">Export to Excel</button>
+    </div>
+  
+    <!-- Form Tambah Data -->
+    <form (submit)="addData($event)" class="mb-5">
+      <div class="row">
+        <div class="col-md-3">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="newData.package_name"
+            name="package_name"
+            placeholder="Package Name"
+            required
+          />
+        </div>
+        <div class="col-md-3">
+          <input
+            type="text"
+            class="form-control"
+            [(ngModel)]="newData.package_description"
+            name="package_description"
+            placeholder="Description"
+            required
+          />
+        </div>
+        <div class="col-md-2">
+          <input
+            type="number"
+            class="form-control"
+            [(ngModel)]="newData.package_price"
+            name="package_price"
+            placeholder="Price"
+            required
+          />
+        </div>
+        <div class="col-md-2">
+          <input
+            type="number"
+            class="form-control"
+            [(ngModel)]="newData.package_duration"
+            name="package_duration"
+            placeholder="Duration"
+            required
+          />
+        </div>
+        <div class="col-md-2">
+          <button type="submit" class="btn btn-success w-100">Add Data</button>
+        </div>
+      </div>
+    </form>
+  
+    <!-- Tabel Data -->
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Package Name</th>
+          <th>Price</th>
+          <th>Duration</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of data; let i = index">
+          <td>{{ i + 1 }}</td>
+          <td>{{ item.package_name }}</td>
+          <td>{{ item.package_price }}</td>
+          <td>{{ item.package_duration }}</td>
+          <td>
+            <button (click)="deleteItem(item.id)" class="btn btn-danger">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  
